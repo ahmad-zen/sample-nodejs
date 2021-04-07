@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@types/node": "^8.0.14",
     "clean-css": "^4.1.11",
     "constantinople": "^3.1.1",
     "cookie-parser": "~1.4.4",
@@ -17,6 +18,7 @@
     "mersenne-twister": "^1.1.0",
     "morgan": "~1.9.1",
     "pug": "^2.0.4",
-    "uglify-js": "^2.6.0"
+    "uglify-js": "^2.6.0",
+    "uuid.v4": "^1.0.0"
   }
 }
