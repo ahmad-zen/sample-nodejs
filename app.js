@@ -1,4 +1,4 @@
-const uuidv4 = require('uuid.v4');
+const { v4: uuidV4 } = require('uuid');
 
 var dayInMinutes = 10;
 function getSinWave(t) {
@@ -15,7 +15,7 @@ class EnergyReading {
 }
 class Device {
     constructor() {
-        this.Id = uuidv4();
+        this.Id = uuidV4();
         this.DAY_ENERGY = new EnergyReading(0);
         this.TOTAL_ENERGY = new EnergyReading(0);
     }
