@@ -32,6 +32,8 @@ class InverterCloudSimulator {
         this.minuteInMilliseconds = 1000 * 60;
         this.minuteCounter = 0;
         this.devices = new Array();
+
+        this.generateEnergyEveryMinute()
     }
     provisionDevice() {
         const device = new Device();
@@ -41,7 +43,9 @@ class InverterCloudSimulator {
     getDevices() {
         return this.devices;
     }
-    generateEnergy(energyGenerated) {
+    generateEnergy() {
+        //todo: add some randomness to the generateEnergy
+        const energyGenerated = getSinWave(this.minuteCounter);
         for (let i = 0; i < this.devices.length; i++) {
             this.devices[i].generateEnergy(energyGenerated);
         }
@@ -52,21 +56,19 @@ class InverterCloudSimulator {
         }
     }
     getResponse() {
-        const response = this.getDevices();
-        this.resetDevices();
-        return response;
+        return this.getDevices();
     }
     generateEnergyEveryMinute() {
         const self = this;
         setInterval(() => {
-            //todo: add some randomness to the generateEnergy
-            const energyGenerated = getSinWave(self.minuteCounter);
-            self.generateEnergy(energyGenerated);
+            self.generateEnergy();
+
             if (self.minuteCounter < 10) {
                 self.minuteCounter += 1;
             }
             else {
                 self.minuteCounter = 0;
+                self.resetDevices();
             }
         }, self.minuteInMilliseconds);
     }
