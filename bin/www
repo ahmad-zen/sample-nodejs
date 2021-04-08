@@ -11,11 +11,13 @@ const url = require('url');
 const port = 8080;
 http.createServer((req, res) => {
     const reqUrl = url.parse(req.url).pathname;
+    const deviceId = req.headers.deviceid;
+
     if (reqUrl === "/solar_api/v1/GetInverterRealtimeData.cgi") {
         res.writeHead(200, {
             'Content-Type': "application/json"
         });
-        const response = app.inverterCloudSimulator.getResponse();
+        const response = app.inverterCloudSimulator.getResponse(deviceId);
         res.end(JSON.stringify(response));
     }
     if (reqUrl === "/provision") {

@@ -40,7 +40,11 @@ class InverterCloudSimulator {
         this.devices.push(device);
         return device.Id;
     }
-    getDevices() {
+    getDevices(deviceId) {
+        if(deviceId != null)
+        {
+            return this.devices.find(d => d.Id == deviceId)
+        }
         return this.devices;
     }
     generateEnergy() {
@@ -55,8 +59,8 @@ class InverterCloudSimulator {
             this.devices[i].resetDayEnergy();
         }
     }
-    getResponse() {
-        return this.getDevices();
+    getResponse(deviceId) {
+        return this.getDevices(deviceId);
     }
     generateEnergyEveryMinute() {
         const self = this;
