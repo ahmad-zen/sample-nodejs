@@ -38,7 +38,9 @@ class InverterCloudSimulator {
     provisionDevice() {
         const device = new Device();
         this.devices.push(device);
-        return device.Id;
+        return {
+            deviceId: device.Id
+        };
     }
     getDevices(deviceId) {
         if(deviceId != null)
